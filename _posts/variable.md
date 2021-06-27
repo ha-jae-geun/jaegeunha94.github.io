@@ -1,0 +1,14 @@
+---
+layout: post
+toc: true
+title: "자바스크립트 변수"
+categories: javascript
+tags: [markdown, javascript]
+author:
+  - Jack
+---
+
+# [javascript info 변수](https://ko.javascript.info/variables)
+# [let은 hoist 안되는게 아니라 tdz](https://evan-moon.github.io/2019/06/18/javascript-let-const/)
+# [loop에서 closure, var/let](https://joshua1988.github.io/web-development/javascript/javascript-interview-3questions/)
+# [블록레벨 스코프, 함수레벨 스코프](https://eblee-repo.tistory.com/m/37)
