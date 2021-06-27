@@ -29,12 +29,5 @@ exclude:
   - README.md
   - jekyll-theme-hamilton.gemspec
 
-# Jekyll SEO Tag (Optional)
-# =========================
-twitter:
-  username: jack
-  card: summary
-logo: logo.png
-    - 
 google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
 lang: en
