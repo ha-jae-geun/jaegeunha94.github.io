@@ -91,3 +91,5 @@ for(var item of test) {
 
 
 ## [MDN Symbol.iterator 설명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator)
+
+## [typeof VS Object.prototype.toString 차이](https://tonks.tistory.com/218)
