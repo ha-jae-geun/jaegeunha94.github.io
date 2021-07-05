@@ -79,6 +79,12 @@ for (var item of obj) {
 * for in 반복문 : 객체의 모든 열거 가능한 속성에 대해 반복
 * for of 반복문 : [Symbol.iterator] 속성을 가지는 컬렉션 전용
 
+## for of 동작 순서
+* for..of가 시작되자마자 for..of는 Symbol.iterator를 호출합니다(Symbol.iterator가 없으면 에러가 발생합니다). Symbol.iterator는 반드시 이터레이터(iterator, 메서드 next가 있는 객체) 를 반환해야 합니다.
+* 이후 for..of는 반환된 객체(이터레이터)만을 대상으로 동작합니다.
+* for..of에 다음 값이 필요하면, for..of는 이터레이터의 next()메서드를 호출합니다.
+* next()의 반환 값은 {done: Boolean, value: any}와 같은 형태이어야 합니다. done=true는 반복이 종료되었음을 의미합니다. done=false일땐 value에 다음 값이 저장됩니다.
+
 
 # Iterable
 * iterable은 객체의 맴버를 반복할 수 있는 객체입니다.
@@ -124,15 +130,26 @@ a[Symbol.iterator]
 
 
 
-# Iterator
+# 이터레이터를 명시적으로 호출하기
+* 메서드 Symbol.iterator는 for..of에 의해 자동으로 호출되는데, 개발자가 명시적으로 호출하는 것도 가능합니다.
 
 ```javascript
-var iterator = 'ab'[Symbol.iterator]();
+let str = "Hello";
 
-console.log(iterator.next()); // {value: "a", done: false}
-console.log(iterator.next()); // {value: "b", done: false}
-console.log(iterator.next()); // {value: undefined, done: true}
+// for..of를 사용한 것과 동일한 작업을 합니다.
+// for (let char of str) alert(char);
+
+let iterator = str[Symbol.iterator]();
+
+while (true) {
+  let result = iterator.next();
+  if (result.done) break;
+  alert(result.value); // 글자가 하나씩 출력됩니다.
+}
 ```
+
+* 이터레이터를 명시적으로 호출하는 경우는 거의 없는데, 이 방법을 사용하면 for..of를 사용하는 것보다 반복 과정을 더 잘 통제할 수 있다는 장점이 있습니다. 
+* 반복을 시작했다가 잠시 멈춰 다른 작업을 하다가 다시 반복을 시작하는 것과 같이 반복 과정을 여러 개로 쪼개는 것이 가능합니다.
 
 * iterator 은 객체를 next 메서드로 순환 할 수 있는 객체다.
 * iterator는 next() 메소드를 가지고 있습니다.
@@ -140,5 +157,9 @@ console.log(iterator.next()); // {value: undefined, done: true}
   * next 메소드의 반환자는 done: boolean 과 value: any 를 포함하는 object 를 반환해야 합니다.
   * next 메소드의 반복이 끝날때 done 은 true 를 반환해야 합니다.
 
+
+# 출처
+* [javascript info](https://ko.javascript.info/iterable)
+* [Andrew Park](https://pks2974.medium.com/javascript%EC%99%80-iterator-cdee90b11c0f)
 
 ## [typeof VS Object.prototype.toString 차이](https://tonks.tistory.com/218)
