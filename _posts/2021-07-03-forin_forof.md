@@ -79,12 +79,6 @@ for (var item of obj) {
 * for in 반복문 : 객체의 모든 열거 가능한 속성에 대해 반복
 * for of 반복문 : [Symbol.iterator] 속성을 가지는 컬렉션 전용
 
-## for of 동작 순서
-* for..of가 시작되자마자 for..of는 Symbol.iterator를 호출합니다(Symbol.iterator가 없으면 에러가 발생합니다). Symbol.iterator는 반드시 이터레이터(iterator, 메서드 next가 있는 객체) 를 반환해야 합니다.
-* 이후 for..of는 반환된 객체(이터레이터)만을 대상으로 동작합니다.
-* for..of에 다음 값이 필요하면, for..of는 이터레이터의 next()메서드를 호출합니다.
-* next()의 반환 값은 {done: Boolean, value: any}와 같은 형태이어야 합니다. done=true는 반복이 종료되었음을 의미합니다. done=false일땐 value에 다음 값이 저장됩니다.
-
 
 # Iterable
 * iterable은 객체의 맴버를 반복할 수 있는 객체입니다.
@@ -93,6 +87,8 @@ for (var item of obj) {
 * 객체는 반드시 하나의 Symbol.iterator 만을 가질수 있습니다.
 * for of 를 이용해서 iterator의 값을 반복할 수 있습니다.
 
+
+## 객체를 iterable 객체로 만들기
 
 ```javascript
 const test = new Object();
@@ -112,8 +108,13 @@ for(var value of test) {
 * 자바스크립트에서 build-in object 중 iterable 를 가지고 있는 객체는 Array, TypedArray, String, Map, Set
 
 
+
+
 ## Iterable 객체
+
+## range를 반복 가능한 객체로 만들어주는 javascript info 예제
 ```javascript
+
 let range = {
   from: 1,
   to: 5
@@ -145,6 +146,13 @@ for (let num of range) {
   alert(num); // 1, then 2, 3, 4, 5
 }
 ```
+
+### for of 동작 순서
+* for..of가 시작되자마자 for..of는 Symbol.iterator를 호출합니다(Symbol.iterator가 없으면 에러가 발생합니다). Symbol.iterator는 반드시 이터레이터(iterator, 메서드 next가 있는 객체) 를 반환해야 합니다.
+* 이후 for..of는 반환된 객체(이터레이터)만을 대상으로 동작합니다.
+* for..of에 다음 값이 필요하면, for..of는 이터레이터의 next()메서드를 호출합니다.
+* next()의 반환 값은 {done: Boolean, value: any}와 같은 형태이어야 합니다. done=true는 반복이 종료되었음을 의미합니다. done=false일땐 value에 다음 값이 저장됩니다.
+
 
 ### 문자열 역시 이터러블의 예입니다.
 ```javascript
