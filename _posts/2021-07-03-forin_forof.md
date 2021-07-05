@@ -74,21 +74,6 @@ for (var item of obj) {
     *  배열은 대표적인 이터러블입니다. 배열 외에도 다수의 내장 객체가 반복 가능합니다. 
 
 
-### 문자열 역시 이터러블의 예입니다.
-```javascript
-var test = "test"
-
-for(var item of test) {
-    console.log(item);  // t e s t 출력
-}
-```
-
-### 문자열 iterator 메소드 검색
-```javascript
-var a = "test"
-
-a[Symbol.iterator]
-```
 
 ## for in 반복문과 for of 반복문의 차이점
 * for in 반복문 : 객체의 모든 열거 가능한 속성에 대해 반복
@@ -121,6 +106,24 @@ for(var value of test) {
 * 자바스크립트에서 build-in object 중 iterable 를 가지고 있는 객체는 Array, TypedArray, String, Map, Set
 
 
+### 문자열 역시 이터러블의 예입니다.
+```javascript
+var test = "test"
+
+for(var item of test) {
+    console.log(item);  // t e s t 출력
+}
+```
+
+### 문자열 Symbol.iterator 속성 검색
+```javascript
+var a = "test"
+
+a[Symbol.iterator]
+```
+
+
+
 # Iterator
 
 ```javascript
@@ -132,10 +135,10 @@ console.log(iterator.next()); // {value: undefined, done: true}
 ```
 
 * iterator 은 객체를 next 메서드로 순환 할 수 있는 객체다.
-* iterator는 next() 메소드를 가지고 있고, next 메소드는 아래의 규칙에 따라 구현되어야 한다.
-* next 메소드는 arguments 가 없다.
-* next 메소드의 반환자는 done: boolean 과 value: any 를 포함하는 object 를 반환해야 한다.
-* next 메소드의 반복이 끝날때 done 은 true 를 반환해야 한다.
+* iterator는 next() 메소드를 가지고 있습니다.
+  * next 메소드는 arguments 가 없습니다.
+  * next 메소드의 반환자는 done: boolean 과 value: any 를 포함하는 object 를 반환해야 합니다.
+  * next 메소드의 반복이 끝날때 done 은 true 를 반환해야 합니다.
 
 
 ## [typeof VS Object.prototype.toString 차이](https://tonks.tistory.com/218)
