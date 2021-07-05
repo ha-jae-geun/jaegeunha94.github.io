@@ -83,11 +83,42 @@ for(var item of test) {
 }
 ```
 
+### 문자열 iterator 메소드 검색
+```javascript
+var a = "test"
 
+a[Symbol.iterator]
+```
 
 ## for in 반복문과 for of 반복문의 차이점
 * for in 반복문 : 객체의 모든 열거 가능한 속성에 대해 반복
 * for of 반복문 : [Symbol.iterator] 속성을 가지는 컬렉션 전용
+
+
+# Iterable
+* iterable은 객체의 맴버를 반복할 수 있는 객체입니다.
+* Javascript 에서 객체가 iterable 하기 위해서는, object 에는 [@@iterator] 메소드가 구현되어 있어야 합니다.
+* Javascript 에서는 object property 에 Symbol.iterator 를 추가해야 합니다.
+* 객체는 반드시 하나의 Symbol.iterator 만을 가질수 있습니다.
+* for of 를 이용해서 iterator의 값을 반복할 수 있습니다.
+
+
+```javascript
+const test = new Object();
+
+test[Symbol.iterator] = function* () {
+  yield 1;
+  yield 2;
+  yield 3;
+};
+
+console.log([...test]); // 1 2 3
+for(var value of test) {
+    console.log(value); // 1 2 3
+}
+```
+
+* 자바스크립트에서 build-in object 중 iterable 를 가지고 있는 객체는 Array, TypedArray, String, Map, Set
 
 
 ## [MDN Symbol.iterator 설명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator)
