@@ -29,22 +29,17 @@ console.log(test); // 1 출력
 # Call By Reference
 
 ```javascript
-const me = {
-  name : 'Jimmy'
+const test = {
+  name : 'Jack'
 };
 function changeName(person) {
   person.name = 'Joo'
 };
-console.log(me); // { name : 'Jimmy' }
-changeName(me);
-console.log(me); // {name : 'Joo' }
+console.log(tset); // { name : 'Jack' }
+changeName(test);
+console.log(test); // {name : 'Joo' }
 ```
 
-* 매개변수 person에 인수로 넘겨진 me의 참조값이 전달. 따라서 me와 person는 같은 참조값을 가지고 있다.
-* changeName함수 안에서 person.name을 바꾸면 me.name도 변한다.
-* 하지만 자바스크립트에서 무조건 Call By Value로 작동하기 때문에 참조타입으로 넘겨도 값이 변하지 않는다.
-* 참조 타입을 인자로 넘기면 참조 값에 대한 복사본이 넘어가기 때문에 기존의 개념과는 다르기 때문에 알고 있어야 한다.
+* 참조 타입을 인자로 넘기면 참조 값에 대한 복사본이 넘어갑니다.
 * argument로 reference가 넘어온다. (reference : 값에 대한 참조 주소, 메모리 주소를 담고 있는 변수)
-* reference를 넘기다 보니 해당 reference가 가리키는 값을 복사하지는 않는다.
-* caller는 인자를 복사해서 넘긴 것이 아니라 참조값을 넘겼기 떄문에 callee가 받은 인자를 수정하면 caller도 영향을 받는다.
-* 메모리 공간 할당의 문제를 해결했으나, 원본 데이터 값을 훼손할 수 있다.
+* caller는 인자를 복사해서 넘긴 것이 아니라 참조값을 넘겼기 떄문에 callee가 받은 인자를 수정하면 caller도 영향을 받습니다.
