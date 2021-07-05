@@ -121,6 +121,6 @@ for(var value of test) {
 * 자바스크립트에서 build-in object 중 iterable 를 가지고 있는 객체는 Array, TypedArray, String, Map, Set
 
 
-## [MDN Symbol.iterator 설명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator)
+
 
 ## [typeof VS Object.prototype.toString 차이](https://tonks.tistory.com/218)
