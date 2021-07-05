@@ -43,3 +43,24 @@ console.log(test); // {name : 'Joo' }
 * 참조 타입을 인자로 넘기면 참조 값에 대한 복사본이 넘어갑니다.
 * argument로 reference가 넘어온다. (reference : 값에 대한 참조 주소, 메모리 주소를 담고 있는 변수)
 * caller는 인자를 복사해서 넘긴 것이 아니라 참조값을 넘겼기 떄문에 callee가 받은 인자를 수정하면 caller도 영향을 받습니다.
+
+
+# Call By Sharing
+
+```javascript
+const test = {
+  name: 'Jack'
+};
+
+function changeName(person) {
+  person = { name: 'Joo' };
+}
+
+console.log(test); // { name: 'Jack' }
+
+changeName(test); //caller
+
+console.log(test); // { name: 'Jack' }
+```
+
+* [메모리 그림](https://velog.io/@jimmyjoo/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%8F%89%EA%B0%80%EC%A0%84%EB%9E%B5-Call-By-Value-vs-Call-By-Reference-vs-Call-By-Sharing)
