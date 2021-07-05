@@ -112,6 +112,40 @@ for(var value of test) {
 * 자바스크립트에서 build-in object 중 iterable 를 가지고 있는 객체는 Array, TypedArray, String, Map, Set
 
 
+## Iterable 객체
+```javascript
+let range = {
+  from: 1,
+  to: 5
+};
+
+// 1. for..of 최초 호출 시, Symbol.iterator가 호출됩니다.
+range[Symbol.iterator] = function() {
+
+  // Symbol.iterator는 이터레이터 객체를 반환합니다.
+  // 2. 이후 for..of는 반환된 이터레이터 객체만을 대상으로 동작하는데, 이때 다음 값도 정해집니다.
+  return {
+    current: this.from,
+    last: this.to,
+
+    // 3. for..of 반복문에 의해 반복마다 next()가 호출됩니다.
+    next() {
+      // 4. next()는 값을 객체 {done:.., value :...}형태로 반환해야 합니다.
+      if (this.current <= this.last) {
+        return { done: false, value: this.current++ };
+      } else {
+        return { done: true };
+      }
+    }
+  };
+};
+
+// 이제 의도한 대로 동작합니다!
+for (let num of range) {
+  alert(num); // 1, then 2, 3, 4, 5
+}
+```
+
 ### 문자열 역시 이터러블의 예입니다.
 ```javascript
 var test = "test"
