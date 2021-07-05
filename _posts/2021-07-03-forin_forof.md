@@ -121,6 +121,21 @@ for(var value of test) {
 * 자바스크립트에서 build-in object 중 iterable 를 가지고 있는 객체는 Array, TypedArray, String, Map, Set
 
 
+# Iterator
+
+```javascript
+var iterator = 'ab'[Symbol.iterator]();
+
+console.log(iterator.next()); // {value: "a", done: false}
+console.log(iterator.next()); // {value: "b", done: false}
+console.log(iterator.next()); // {value: undefined, done: true}
+```
+
+* iterator 은 객체를 next 메서드로 순환 할 수 있는 객체다.
+* iterator는 next() 메소드를 가지고 있고, next 메소드는 아래의 규칙에 따라 구현되어야 한다.
+* next 메소드는 arguments 가 없다.
+* next 메소드의 반환자는 done: boolean 과 value: any 를 포함하는 object 를 반환해야 한다.
+* next 메소드의 반복이 끝날때 done 은 true 를 반환해야 한다.
 
 
 ## [typeof VS Object.prototype.toString 차이](https://tonks.tistory.com/218)
