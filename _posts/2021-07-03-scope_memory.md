@@ -45,7 +45,7 @@ console.log(test); // {name : 'Joo' }
 * caller는 인자를 복사해서 넘긴 것이 아니라 참조값을 넘겼기 떄문에 callee가 받은 인자를 수정하면 caller도 영향을 받습니다.
 
 
-# Call By Sharing
+# [Call By Sharing](https://velog.io/@jimmyjoo/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%8F%89%EA%B0%80%EC%A0%84%EB%9E%B5-Call-By-Value-vs-Call-By-Reference-vs-Call-By-Sharing)
 
 ```javascript
 const test = {
@@ -62,5 +62,3 @@ changeName(test); //caller
 
 console.log(test); // { name: 'Jack' }
 ```
-
-* [메모리 그림](https://velog.io/@jimmyjoo/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%8F%89%EA%B0%80%EC%A0%84%EB%9E%B5-Call-By-Value-vs-Call-By-Reference-vs-Call-By-Sharing)
