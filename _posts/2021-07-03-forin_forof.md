@@ -112,6 +112,13 @@ for(var value of test) {
 
 ## Iterable 객체
 
+### for of 동작 순서
+* for..of가 시작되자마자 for..of는 Symbol.iterator를 호출합니다(Symbol.iterator가 없으면 에러가 발생합니다). Symbol.iterator는 반드시 이터레이터(iterator, 메서드 next가 있는 객체) 를 반환해야 합니다.
+* 이후 for..of는 반환된 객체(이터레이터)만을 대상으로 동작합니다.
+* for..of에 다음 값이 필요하면, for..of는 이터레이터의 next()메서드를 호출합니다.
+* next()의 반환 값은 {done: Boolean, value: any}와 같은 형태이어야 합니다. done=true는 반복이 종료되었음을 의미합니다. done=false일땐 value에 다음 값이 저장됩니다.
+
+
 ## range를 반복 가능한 객체로 만들어주는 javascript info 예제
 ```javascript
 
@@ -147,31 +154,6 @@ for (let num of range) {
 }
 ```
 
-### for of 동작 순서
-* for..of가 시작되자마자 for..of는 Symbol.iterator를 호출합니다(Symbol.iterator가 없으면 에러가 발생합니다). Symbol.iterator는 반드시 이터레이터(iterator, 메서드 next가 있는 객체) 를 반환해야 합니다.
-* 이후 for..of는 반환된 객체(이터레이터)만을 대상으로 동작합니다.
-* for..of에 다음 값이 필요하면, for..of는 이터레이터의 next()메서드를 호출합니다.
-* next()의 반환 값은 {done: Boolean, value: any}와 같은 형태이어야 합니다. done=true는 반복이 종료되었음을 의미합니다. done=false일땐 value에 다음 값이 저장됩니다.
-
-
-### 문자열 역시 이터러블의 예입니다.
-```javascript
-var test = "test"
-
-for(var item of test) {
-    console.log(item);  // t e s t 출력
-}
-```
-
-### 문자열 Symbol.iterator 속성 검색
-```javascript
-var a = "test"
-
-a[Symbol.iterator]
-```
-
-
-
 # 이터레이터를 명시적으로 호출하기
 * 메서드 Symbol.iterator는 for..of에 의해 자동으로 호출되는데, 개발자가 명시적으로 호출하는 것도 가능합니다.
 
@@ -199,6 +181,22 @@ while (true) {
   * next 메소드의 반환자는 done: boolean 과 value: any 를 포함하는 object 를 반환해야 합니다.
   * next 메소드의 반복이 끝날때 done 은 true 를 반환해야 합니다.
 
+
+### 문자열 역시 이터러블의 예입니다.
+```javascript
+var test = "test"
+
+for(var item of test) {
+    console.log(item);  // t e s t 출력
+}
+```
+
+### 문자열 Symbol.iterator 속성 검색
+```javascript
+var a = "test"
+
+a[Symbol.iterator]
+```
 
 # 출처
 * [javascript info](https://ko.javascript.info/iterable)
