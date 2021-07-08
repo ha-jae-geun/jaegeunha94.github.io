@@ -198,6 +198,27 @@ var a = "test"
 a[Symbol.iterator]
 ```
 
+# 기타 for of 사용
+```javascript
+const arr = ['a', 'b'];
+for (const [index, element] of arr.entries()) {
+    console.log(`${index}. ${element}`);
+}
+
+// Output:
+// 0. a
+// 1. b
+
+const map = new Map([
+    [false, 'no'],
+    [true, 'yes'],
+]);
+for (const [key, value] of map) {
+    console.log(`${key} => ${value}`);
+}
+```
+* entries() 메서드는 배열의 각 인덱스에 대한 키/값 쌍을 가지는 새로운 Array Iterator 객체를 반환합니다.
+
 # 출처
 * [javascript info](https://ko.javascript.info/iterable)
 * [Andrew Park](https://pks2974.medium.com/javascript%EC%99%80-iterator-cdee90b11c0f)
