@@ -1,7 +1,7 @@
 ---
 layout: post
 toc: true
-title: "자바스크립트 변수"
+title: "실행 컨텍스트"
 categories: javascript
 tags: [javascript]
 author:
