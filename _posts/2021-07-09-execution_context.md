@@ -83,6 +83,11 @@ console.log(window.x); // 10
 console.log(window.y); // undefined
 ```
 
+## 해결책
+1. 'use strict'
+2. ESLint
+  * 린트 도구는 정적 분석(static analysis) 기능을 통해 소스 코드를 실행하기 전에 소스 코드를 스캔하여 문법적 오류만이 아니라 잠재적 오류까지 찾아내고 오류의 이유를 리포팅해주는 유용한 도구이다.
+
 
 
 # 참조
