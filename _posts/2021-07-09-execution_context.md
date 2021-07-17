@@ -9,7 +9,7 @@ author:
 ---
 
 
-# 실행 컨텍스트
+# [실행 컨텍스트](https://ui.dev/ultimate-guide-to-execution-contexts-hoisting-scopes-and-closures-in-javascript/)
 * ECMAScript 스펙에 따르면 실행 컨텍스트를 실행 가능한 코드를 형상화하고 구분하는 추상적인 개념이라고 정의한다. 좀 더 쉽게 말하자면 실행 컨텍스트는 실행 가능한 코드가 실행되기 위해 필요한 환경 이라고 말할 수 있겠다. 여기서 말하는 실행 가능한 코드는 아래와 같다.
 
 ## 실행 가능한 코드
