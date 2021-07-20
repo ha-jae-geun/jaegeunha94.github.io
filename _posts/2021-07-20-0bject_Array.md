@@ -66,3 +66,58 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 
 * defineProperty메서드는 객체에 해당 프로퍼티가 있으면 플래그를 원하는 대로 변경해줍니다. 프로퍼티가 없으면 인수로 넘겨받은 정보를 이용해 새로운 프로퍼티를 만듭니다. 이때 플래그 정보가 없으면 플래그 값은 자동으로 false가 됩니다.
   * ‘평범한 방식으로’ 객체 프로퍼티 user.name을 만들었을 때와 defineProperty를 이용해 프로퍼티를 만들었을 때의 가장 큰 차이점은 플래그에 있습니다. defineProperty를 사용해 프로퍼티를 만든 경우, descriptor에 플래그 값을 명시하지 않으면 플래그 값이 자동으로 false가 됩니다.  
+
+
+
+## writable 플래그
+```javascript
+let user = {
+  name: "John"
+};
+
+Object.defineProperty(user, "name", {
+  writable: false
+});
+
+```
+* user.name = "Pete"; // Error: Cannot assign to read only property 'name'
+* 이제 defineProperty를 사용해 writable 플래그를 true로 변경하지 않는 한 그 누구도 객체의 이름을 변경할 수 없다.
+* 에러는 엄격 모드에서만 발생합니다.
+
+
+
+## enumerable 플래그
+
+```javascript
+let user = {
+  name: "John",
+  toString() {
+    return this.name;
+  }
+};
+
+//커스텀 toString은 for...in을 사용해 열거할 수 있습니다.
+for (let key in user) alert(key); // name, toString
+```
+
+### enumberable 플래그 false
+```javascript
+let user = {
+  name: "John",
+  toString() {
+    return this.name;
+  }
+};
+
+Object.defineProperty(user, "toString", {
+  enumerable: false
+});
+
+// 이제 for...in을 사용해 toString을 열거할 수 없게 되었습니다.
+for (let key in user) alert(key); // name
+
+열거가 불가능한 프로퍼티는 Object.keys에도 배제됩니다.
+alert(Object.keys(user)); // name
+```
+
+* enumerable 플래그 값을 false로 설정하면 for..in 반복문에 나타나지 않게 할 수 있습니다.
