@@ -121,3 +121,43 @@ alert(Object.keys(user)); // name
 ```
 
 * enumerable 플래그 값을 false로 설정하면 for..in 반복문에 나타나지 않게 할 수 있습니다.
+
+
+
+# configurable 플래그
+* 구성 가능하지 않음을 나타내는 플래그(non-configurable flag)인 configurable:false는 몇몇 내장 객체나 프로퍼티에 기본으로 설정되어있습니다.
+* 어떤 프로퍼티의 configurable 플래그가 false로 설정되어 있다면 해당 프로퍼티는 객체에서 지울 수 없습니다.
+
+```javascript
+let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
+
+alert( JSON.stringify(descriptor, null, 2 ) );
+/*
+{
+  "value": 3.141592653589793,
+  "writable": false,
+  "enumerable": false,
+  "configurable": false
+}
+*/
+개발자가 코드를 사용해 Math.PI 값을 변경하거나 덮어쓰는 것도 불가능합니다.
+
+Math.PI = 3; // Error
+
+```
+
+* 수정도 불가능하지만 지우는 것 역시 불가능합니다.
+* configurable 플래그를 false로 설정하면 돌이킬 방법이 없습니다. defineProperty를 써도 값을 true로 되돌릴 수 없죠.
+
+
+## configurable:false 제약사항
+* configurable 플래그를 수정할 수 없음
+* enumerable 플래그를 수정할 수 없음.
+* writable: false의 값을 true로 바꿀 수 없음(true를 false로 변경하는 것은 가능함).
+* 접근자 프로퍼티 get/set을 변경할 수 없음(새롭게 만드는 것은 가능함).
+* 이런 특징을 이용하면 아래와 같이 “영원히 변경할 수 없는” 프로퍼티(user.name)를 만들 수 있습니다.
+
+
+## "non-configurable"은 "non-writable" 차이
+* configurable 플래그가 false이더라도 writable 플래그가 true이면 프로퍼티 값을 변경할 수 있습니다.
+* configurable: false는 플래그 값 변경이나 프로퍼티 삭제를 막기 위해 만들어졌지, 프로퍼티 값 변경을 막기 위해 만들어진 게 아닙니다.
