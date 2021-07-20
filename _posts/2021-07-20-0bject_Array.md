@@ -65,3 +65,4 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 ```
 
 * defineProperty메서드는 객체에 해당 프로퍼티가 있으면 플래그를 원하는 대로 변경해줍니다. 프로퍼티가 없으면 인수로 넘겨받은 정보를 이용해 새로운 프로퍼티를 만듭니다. 이때 플래그 정보가 없으면 플래그 값은 자동으로 false가 됩니다.
+  * ‘평범한 방식으로’ 객체 프로퍼티 user.name을 만들었을 때와 defineProperty를 이용해 프로퍼티를 만들었을 때의 가장 큰 차이점은 플래그에 있습니다. defineProperty를 사용해 프로퍼티를 만든 경우, descriptor에 플래그 값을 명시하지 않으면 플래그 값이 자동으로 false가 됩니다.  
