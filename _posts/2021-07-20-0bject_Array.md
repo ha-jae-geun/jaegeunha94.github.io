@@ -37,3 +37,31 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 }
 */
 ```
+
+
+# 프로퍼티 플래그 변경
+* Object.defineProperty(obj, propertyName, descriptor)
+  * obj, propertyName: 설명자를 적용하고 싶은 객체와 객체 프로퍼티
+  * descriptor: 적용하고자 하는 프로퍼티 설명자
+
+```javascript
+let user = {};
+
+Object.defineProperty(user, "name", {
+  value: "John"
+});
+
+let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+
+alert( JSON.stringify(descriptor, null, 2 ) );
+/*
+{
+  "value": "John",
+  "writable": false,
+  "enumerable": false,
+  "configurable": false
+}
+ */
+```
+
+* defineProperty메서드는 객체에 해당 프로퍼티가 있으면 플래그를 원하는 대로 변경해줍니다. 프로퍼티가 없으면 인수로 넘겨받은 정보를 이용해 새로운 프로퍼티를 만듭니다. 이때 플래그 정보가 없으면 플래그 값은 자동으로 false가 됩니다.
